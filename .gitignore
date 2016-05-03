@@ -1,2 +1,10 @@
 /.idea
 /dubbocode.iml
+/logs
+/customspringxml/*.iml
+/customspringxml/*
+/myinterface/*
+/myinterface/*.iml
+/serviceconsumer/*.iml
+/serviceserver/*.iml
+/serviceserver/*
