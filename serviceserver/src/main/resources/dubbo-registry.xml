@@ -1,0 +1,27 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- dubbo生产者别名 -->
+    <dubbo:application name="userProvider" version="1.0"/>
+
+    <!-- 如果有多个不同的注册中心，可以声明多个<dubbo:registry>标签，并在dubbo:service或dubbo:reference的registry属性指定使用的注册中心。-->
+    <!--注册中心服务器地址，如果地址没有端口缺省为9090，同一集群内的多个地址用逗号分隔，如：ip:port,ip:port，不同集群的注册中心，请配置多个<dubbo:registry>标签-->
+    <!-- username 和 password 登录注册中心用户名和密码，如果注册中心不需要验证可不填-->
+    <!-- protocol 注同中心地址协议，支持dubbo, http, local三种协议,缺省dubbo-->
+    <!--transport 网络传输方式，可选mina,netty 缺省netty-->
+    <!--timeout 注册中心请求超时时间(毫秒) 缺省5000-->
+    <!-- session 注册中心会话超时时间(毫秒)，用于检测提供者非正常断线后的脏数据，比如用心跳检测的实现，此时间就是心跳间隔，不同注册中心实现不一样。 缺省 60000-->
+    <!--check 注册中心不存在时，是否报错 缺省true-->
+    <!--register 是否向此注册中心注册服务，如果设为false，将只订阅，不注册 缺省true-->
+    <!--subscribe 是否向此注册中心订阅服务，如果设为false，将只注册，不订阅 缺省true-->
+    <!--dynamic 服务是否动态注册，如果设为false，注册后将显示后disable状态，需人工启用，并且服务提供者停止时，也不会自动取消册，需人工禁用。 缺省true-->
+    <dubbo:registry id="registry" address="zookeeper://127.0.0.1:2181" password="12345" username="ggj" protocol="dubbo"
+                    transport="netty" timeout="5000" session="60000" check="true"  register="true" subscribe="true"
+                    dynamic="true"
+    />
+<!--    <dubbo:registry id="registryTwoAddress" address="zookeeper://127.0.0.1:2181,zookeeper://127.0.0.1:2182"
+                    password="12345" username="ggj"/>-->
+
+</beans>

@@ -1,0 +1,23 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+ 
+	<!-- dubbo生产者别名 -->
+    <dubbo:application name="userProvider" version="1.0"/>
+
+   <!-- 如果有多个不同的注册中心，可以声明多个<dubbo:registry>标签，并在dubbo:service或dubbo:reference的registry属性指定使用的注册中心。-->
+    <!--xx银行有些服务来不及在上海部署，只在北京部署，而上海的其它应用需要引用此服务，就可以将服务同时注册到两个注册中心。-->
+
+    <dubbo:registry id="beijingRegistry" address="zookeeper://127.0.0.1:2181" password="12345" username="ggj" />
+<!--    <dubbo:registry id="shanghaiRegistry" address="zookeeper://127.0.0.1:2182" password="12345" username="ggj" />-->
+
+    <!-- 如果dubb：service 没有设置registry 那就缺省向所有声明的注册中心注册 -->
+    <dubbo:service interface="com.ggj.myinterface.account.service.UserService" ref="userServiceImp"/>
+    <dubbo:service interface="com.ggj.myinterface.sys.service.DictionaryTableService" ref="dictionaryTableServiceImp" registry="beijingRegistry"/>
+
+
+    <!--实现层 -->
+    <bean id="userServiceImp" class="com.ggj.modules.account.serviceimp.UserServiceImp" />
+    <bean id="dictionaryTableServiceImp" class="com.ggj.modules.sys.serviceImp.DictionaryTableServiceImp" />
+</beans>

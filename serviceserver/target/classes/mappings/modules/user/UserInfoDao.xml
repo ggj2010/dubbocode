@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ggj.modules.account.dao.UserDao">
+	<resultMap id="userInfoResult" type="com.ggj.myinterface.account.bean.User">
+		<id property="id" column="id" />
+		<result property="email" column="email" />
+		<result property="name" column="name" />
+		<result property="password" column="password" />
+		<result property="salt" column="salt" />
+		<result property="age" column="age" />
+		<result property="sex" column="sex" />
+		<result property="image" column="image" />
+		<result property="registerDate" column="register_date" />
+		<result property="isBlacklist" column="is_blacklist" />
+		<result property="isActive" column="is_active" />
+		<result property="image" column="image" />
+		<result property="flag" column="flag" />
+	</resultMap>
+
+	<insert id="insert">
+		INSERT INTO tb_userinfo(
+		id,email,name,password,salt,age,sex,register_date,is_blacklist,is_active,flag
+		) VALUES (
+		#{id},#{email},#{name},#{password},#{salt},#{age},#{sex},#{registerDate},#{isBlacklist},#{isActive},#{flag}
+		)
+	</insert>
+
+
+	<select id="get" resultMap="userInfoResult">
+		select * from tb_userinfo where id=#{id}
+	</select>
+	
+	<!-- 查询所有 -->
+	<select id="findList" resultMap="userInfoResult">
+		select * from tb_userinfo where flag=#{flag}
+		order by register_date
+	</select>
+
+</mapper>

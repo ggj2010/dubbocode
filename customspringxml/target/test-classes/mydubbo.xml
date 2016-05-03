@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+       xmlns:dubbo="http://ggjlovezjy.date/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://ggjlovezjy.date/schema/dubbo http://ggjlovezjy.date/schema/dubbo/dubbo.xsd">
+
+    <!--自定义的pplication-->
+<dubbo:application  id="dubboApplication" name="myApplication" version="1.0"  owner="gaoguangjin"/>
+
+</beans>
