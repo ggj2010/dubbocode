@@ -22,27 +22,8 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class DictionaryTableServiceImp  extends CrudService<DictionaryTableDao, DictionaryTable> implements DictionaryTableService {
 
-    public DictionaryTable get(DictionaryTable entity) {
-        return null;
-    }
-
-    public DictionaryTable get(String id) {
-        return null;
-    }
-
-    public List<DictionaryTable> findList(DictionaryTable entity) {
-        return null;
-    }
 
     public void insert(DictionaryTable entity) {
-
-    }
-
-    public void update(DictionaryTable entity) {
-
-    }
-
-    public void delete(DictionaryTable entity) {
 
     }
 }

@@ -23,5 +23,4 @@
     />
 <!--    <dubbo:registry id="registryTwoAddress" address="zookeeper://127.0.0.1:2181,zookeeper://127.0.0.1:2182"
                     password="12345" username="ggj"/>-->
-
 </beans>

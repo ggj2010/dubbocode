@@ -8,33 +8,31 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 		">
 
-    <!-- 加载配置属性文件-->
-    <context:property-placeholder ignore-unresolvable="true" location="classpath:properties/*.properties"/>
 
     <!-- base-package 如果多个，用“,”分隔 -->
-    <context:component-scan base-package="com.ggj.modules">
+    <context:component-scan base-package="com.ggj">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
     </context:component-scan>
+    <!-- 加载配置属性文件-->
+    <context:property-placeholder ignore-unresolvable="true" location="classpath:properties/*.properties"/>
 
     <!-- MyBatis begin -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <!-- 映射实体类 -->
-        <property name="typeAliasesPackage" value="com.ggj.modules"/>
+        <property name="typeAliasesPackage" value="com.ggj.modules.account"/>
         <!-- mapper文件 -->
         <property name="mapperLocations" value="classpath:mappings/**/*.xml"/>
-        <!-- resultType/parameterType 映射到的类型
-        <property name="typeAliasesSuperType" value="com.ggj.mutualhelp.common.persistence.BaseEntity"/>
-         -->
     </bean>
 
 
     <!-- 获取mybatis的映射类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--不要扫描到实现层的接口-->
         <property name="basePackage" value="com.ggj.modules"/>
         <!--mybatis-spring1.2.2用这个配置 -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-        <!--mybatis-spring1.0.1用这个配置 <property name="sqlSessionFactory" ref="sqlSessionFactory" /> -->
     </bean>
 
     <!-- 定义事务 -->
@@ -68,14 +66,7 @@
         <property name="testWhileIdle" value="${testWhileIdle}"/>
         <property name="testOnBorrow" value="${testOnBorrow}"/>
         <property name="testOnReturn" value="${testOnReturn}"/>
-        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
-        <!-- 如果用Oracle，则把poolPreparedStatements配置为true，mysql可以配置为false。
-        <property name="poolPreparedStatements" value="${poolPreparedStatements}" />
-        <property name="maxPoolPreparedStatementPerConnectionSize" value="${maxPoolPreparedStatementPerConnectionSize}" />
-     -->
     </bean>
 
     <import resource="dubbo-provider.xml"/>
-
-
 </beans>

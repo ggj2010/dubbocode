@@ -13,6 +13,7 @@
         <module>myinterface</module>
         <module>serviceserver</module>
         <module>serviceconsumer</module>
+        <module>designpattern</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -146,6 +147,13 @@
                         <groupId>org.springframework</groupId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+
+            <!-- zclient -->
+            <dependency>
+                <groupId>com.101tec</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>${zkclient.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>

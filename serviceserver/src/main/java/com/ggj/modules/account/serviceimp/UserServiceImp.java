@@ -1,6 +1,6 @@
 package com.ggj.modules.account.serviceimp;
 
-import com.ggj.modules.account.dao.UserDao;
+import com.ggj.modules.account.dao.UserInfoDao;
 import com.ggj.modules.crud.CrudService;
 import com.ggj.myinterface.account.bean.User;
 import com.ggj.myinterface.account.service.UserService;
@@ -19,29 +19,16 @@ import java.util.List;
 @Service
 @Slf4j
 @Transactional(readOnly = true)
-public class UserServiceImp extends CrudService<UserDao, User> implements UserService {
-	
-	public User get(User entity) {
-		return super.get(entity);
-	}
-	
+public class UserServiceImp extends CrudService<UserInfoDao, User> implements UserService {
+
+	@Override
 	public User get(String id) {
+		log.info("测试分组group1 get");
 		return super.get(id);
 	}
-	
-	public List<User> findList(User entity) {
-		return super.findList(entity);
-	}
-	
+
 	public void insert(User entity) {
+		log.info("测试分组group1 insert");
 		super.save(entity);
-	}
-	
-	public void update(User entity) {
-		super.save(entity);
-	}
-	
-	public void delete(User entity) {
-		super.delete(entity);
 	}
 }
